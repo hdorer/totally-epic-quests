@@ -1,4 +1,4 @@
-const convertObject = require("../utils/util-functions")
+const { convertObject } = require("../utils/util-functions")
 
 class Player {
     /** @type {number} */

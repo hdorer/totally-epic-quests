@@ -8,12 +8,11 @@ module.exports = {
                 return
             }
         
-            try {
-                await command.execute(logger, interaction)
-            } catch(error) {
-                console.error(error)
-                await interaction.reply({content: `There was an error executing this command!`, ephemeral: true})
-            }
+            await command.execute(logger, interaction)
+                .catch(error => {
+                    console.error(error)
+                    interaction.reply({content: `There was an error executing this command!`, ephemeral: true})
+                })
         } else if(interaction.isButton()) {
             const button = interaction.client.buttons.get(interaction.customId)
 
@@ -25,7 +24,7 @@ module.exports = {
                 await button.execute(logger, interaction)
             } catch(error) {
                 console.error(error)
-                await interaction.reply({content: `There was an error trying to perform this action!`, ephemeral: true})
+                await interaction.reply({content: `There was an error performing this action!`, ephemeral: true})
             }
         }
     }

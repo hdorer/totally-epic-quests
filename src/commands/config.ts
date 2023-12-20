@@ -142,6 +142,10 @@ module.exports = {
             interaction.reply({content: `Set mod channel to <#${channel.id}>!`, ephemeral: true})
         }
         if(interaction.options.getSubcommand() === `view`) {
+            if(interaction.options.getSubcommandGroup() === `rank-role`) {
+                return
+            }
+
             logger.log(`Subcommand: view`)
             
             const output = new EmbedBuilder()
